@@ -1,0 +1,17 @@
+<div class="container">
+
+
+
+  <div class="jumbotron">
+    <h1>Welcome to IMAGEine That!</h1>
+    <h3>By signing in you can view the photos of others and provide them with helpful critique, as well as upload yor own photos to receive constructive feedback on style, technical skill, and content.</h3>
+    <h4>If you're ready to start the journey:</h4>
+    <button>Sign Up Now!</button>
+
+  </div>
+
+  <% if @current_user %>
+  <h3>Hello, <%= @current_user.email %></h3>
+  <% end %>
+
+</div>

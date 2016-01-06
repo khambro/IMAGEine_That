@@ -1,0 +1,13 @@
+
+<%= link_to "Upload New Photo", "/new-photo" %>
+
+
+
+<h2>What splendid photos, <%= current_user.email %>!</h2>
+
+<% @photos.each do |p| %>
+  <% if p.user_id == current_user.id %>
+    <%= image_tag p.image_file.url(:square) %>
+    <%= p.description %>
+  <% end %>
+<% end %>
