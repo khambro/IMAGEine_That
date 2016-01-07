@@ -1,8 +1,15 @@
 class ReviewsController <ApplicationController
 
+  def send_subscribe
+    PhotoMailer.subscribe(current_user.id).deliver_now
+    redirect_to "/browse"
+  end
+
+
   def create
     @review = Review.new(review_params)
     @review.save
+    PhotoMailer.review_received(@review.id).deliver_now
     redirect_to "/browse"
   end
 

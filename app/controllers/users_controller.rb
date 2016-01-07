@@ -6,9 +6,12 @@ class UsersController <ApplicationController
 
   def create
     @user = User.new(user_params)
-    @user.save
-    session[:user_id] = @user.id
-    redirect_to "/user-homepage"
+    if @user.save
+      session[:user_id] = @user.id
+      redirect_to "/user-homepage"
+    else
+      redirect_to "/user/new", notice: "Invalid credentials"
+    end
   end
 
   def new
@@ -22,7 +25,7 @@ class UsersController <ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name, :email, :password)
+    params.require(:user).permit(:name, :email, :password, :password_confirmation)
   end
 
 end

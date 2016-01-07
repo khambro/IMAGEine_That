@@ -1,7 +1,7 @@
 
 <%= link_to "Upload New Photo", "/new-photo" %>
 
-
+<%= button_to "Subscribe", send_subscribe_path, method: :post %> 
 
 <h2>What splendid photos, <%= current_user.email %>!</h2>
 

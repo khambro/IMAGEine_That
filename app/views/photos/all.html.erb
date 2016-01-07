@@ -16,7 +16,10 @@
     <%= radio_button_tag "review[rating]", "meh" %><%= image_tag "meh.jpg" %>
     <%= radio_button_tag "review[rating]", "bad" %><%= image_tag "thumbsdown.png" %>
   </div>
+
   <%= submit_tag "Submit Review" %>
   <% end %>
 <% end %>
 <% end %>
+
+<%= button_to "Subscribe", send_subscribe_path, method: :post %>

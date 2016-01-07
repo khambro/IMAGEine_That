@@ -1,7 +1,11 @@
 class PhotosController <ApplicationController
 
-  def create
+  def send_subscribe
+    PhotoMailer.subscribe(current_user.id).deliver_now
+    redirect_to "/browse"
+  end
 
+  def create
     @photo = Photo.new(photo_params)
     @photo.save
     redirect_to "/user-homepage"

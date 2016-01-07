@@ -13,12 +13,15 @@ Rails.application.routes.draw do
   get "/new-photo", to: "photos#new", as: :new_photo
   post "/new-photo", to: "photos#create"
   get "/user/photos", to: "photos#show"
+  post "/photos/subscribe", to: "photos#send_subscribe", as: :send_subscribe
 
   get "/user-homepage", to: "photos#show", as: :photos
   post "/user-homepage", to: "photos#create"
 
   get "/browse", to: "photos#all"
   post "/review", to: "reviews#create"
+  post "/review/received", to: "photos#review_received", as: :review_received
+
 
 
 
