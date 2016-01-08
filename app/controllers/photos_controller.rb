@@ -8,7 +8,7 @@ class PhotosController <ApplicationController
   def create
     @photo = Photo.new(photo_params)
     @photo.save
-    redirect_to "/user-homepage"
+    redirect_to "/photo/#{@photo.id}"
   end
 
   def new
@@ -23,8 +23,15 @@ class PhotosController <ApplicationController
   end
 
   def all
-    @photos = Photo.all
+    @photos = Photo.all.where.not(user_id: current_user.id)
+    @random = []
+    @photos.each do |s|
+      if !s.reviews.exists?(user_id: current_user.id)
+        @random << s
+      end
+    end
   end
+
 
   def delete
   @photo = Photo.find(params[:id])
