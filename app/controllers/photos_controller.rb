@@ -26,6 +26,12 @@ class PhotosController <ApplicationController
     @photos = Photo.all
   end
 
+  def delete
+  @photo = Photo.find(params[:id])
+  @photo.destroy
+  redirect_to "/user-homepage"
+end
+
 
 
 

@@ -20,6 +20,7 @@ class ReviewsController <ApplicationController
 
 
   def show
+    @photo = Photo.find(params[:id]) 
     @review = Review.new
     @reviews = Review.all
   end

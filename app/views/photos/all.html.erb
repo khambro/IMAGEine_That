@@ -1,25 +1,25 @@
 <h2>Other photographers want your feedback,<%= current_user.email %>!</h2>
 
-<% @photos.each do |p| %>
-  <% if p.user_id != current_user.id %>
-    <%= image_tag p.image_file.url(:square) %>
-    <%= p.user.email %>
-  <%= form_tag "/review" do %>
-  <input type="hidden" name="review[photo_id]" value= <%= p.id %> />
-  <input type="hidden" name="review[user_id]" value=<%= current_user.id %> />
-  <div>
-    <%= label_tag :comment %>
-    <%= text_area_tag "review[comment]", nil, placeholder: "Comment", class: "text-field" %>
-  </div>
-  <div>
-    <%= radio_button_tag "review[rating]", "good"  %><%= image_tag "thumbsup.jpg" %>
-    <%= radio_button_tag "review[rating]", "meh" %><%= image_tag "meh.jpg" %>
-    <%= radio_button_tag "review[rating]", "bad" %><%= image_tag "thumbsdown.png" %>
-  </div>
+<% p = @photos.sample %>
+  <% if p.user_id != current_user.id && if !p.reviews.exists?(user_id: current_user.id) %>
 
-  <%= submit_tag "Submit Review" %>
-  <% end %>
-<% end %>
-<% end %>
 
-<%= button_to "Subscribe", send_subscribe_path, method: :post %>
+
+      <%= image_tag p.image_file.url(:square) %>
+      <%= p.user.email %>
+      <%= form_tag "/review" do %>
+        <input type="hidden" name="review[photo_id]" value= <%= p.id %> />
+        <input type="hidden" name="review[user_id]" value=<%= current_user.id %> />
+        <div>
+          <%= label_tag :comment %>
+          <%= text_area_tag "review[comment]", nil, placeholder: "Comment", class: "text-field" %>
+        </div>
+        <div>
+          <%= radio_button_tag "review[rating]", "good"  %><%= image_tag "thumbsup.jpg" %>
+          <%= radio_button_tag "review[rating]", "meh" %><%= image_tag "meh.jpg" %>
+          <%= radio_button_tag "review[rating]", "bad" %><%= image_tag "thumbsdown.png" %>
+        </div>
+        <%= submit_tag "Submit Review" %>
+      <% end %>
+      <% end %>
+        <% end %>

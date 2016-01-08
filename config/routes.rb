@@ -21,6 +21,8 @@ Rails.application.routes.draw do
   get "/browse", to: "photos#all"
   post "/review", to: "reviews#create"
   post "/review/received", to: "photos#review_received", as: :review_received
+  get "/photo/:id", to: "reviews#show"
+  delete "/photo/:id", to: "photos#delete"
 
 
 

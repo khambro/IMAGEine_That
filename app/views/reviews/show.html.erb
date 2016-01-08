@@ -1,0 +1,14 @@
+
+
+  <%= image_tag @photo.image_file.url(:square) %></a>
+  <%= @photo.description %>
+  <form action="/photo/<%= @photo.id %>" method="POST">
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>" />
+    <input type="hidden" name="_method" value="DELETE" />
+    <input class="button" type="submit" value="Delete" data-confirm="Delete photo?"/>
+  </form>
+  <% @photo.reviews.each do |r| %>
+    <%= r.rating %>
+    <%= r.comment %>
+    <%= r.user.email %>
+  <% end %>
