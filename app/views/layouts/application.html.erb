@@ -6,66 +6,72 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
-<body>
 
-<nav class= "navbar navbar-inverse">
- <div class="container">
-  <div class="navbar-header">
-    <!-- <%= link_to (image_tag "ladybeer.jpg"), "/", class:"logo" %></h3> -->
-    <%= link_to "IMAGEine That", root_path, class: "navbar-brand" %>
-    <button class ="navbar-toggle collapsed" data-toggle="collapse" data-target=".menu-wrapper">
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-    </button>
-  </div>
-
-  <div class="menu-wrapper collapse navbar-collapse">
-
-    <div class="navbar-menu navbar-right">
-
-      <ul class="nav navbar-nav">
-
-        <% if current_user %>
-        <li><%= link_to "My Page", "/user-homepage" %></li>
-        Hello <%= current_user.email %>
-        <li><%= link_to "Browse Photos", "/browse" %></li>
-        <li><%= link_to "Sign Out", sign_out_path %></li>
-        <li><%= link_to "Contact Us", "#" %></li>
-        <% end %>
-      </ul>
-    </div>
-
-
-    <% if !current_user %>
-      <div class="navbar-right">
-        <h3> <%= link_to "Sign Up", :new_user %></h3>
-        <%= form_tag sign_in_path, class:"navbar-form" do %>
-          <div class= "form-group">
-            <input type="email" name="email" placeholder="Email" class="form-control">
-          </div>
-          <div class= "form-group">
-            <input type="password" name="password" placeholder="Password" class="form-control">
-          </div>
-          <input type="submit" value="Sign In" class="btn btn-success">
-        <% end %>
-      </div>
-    <% end %>
-  </div>
- </div>
-</nav>
-
-
-
-<% if flash.key?(:notice) %>
-  <div class = 'alert alert-info'>
-    <%= flash[:notice] %>
-  </div>
+<% if current_page?("/") %>
+  <body class="background">
+<% else %>
+  <body>
 <% end %>
 
-<div class= 'container'>
-  <%= yield %>
-</div>
+
+  <nav class= "navbar navbar-inverse">
+   <div class="container">
+    <div class="navbar-header">
+      <!-- <%= link_to (image_tag "ladybeer.jpg"), "/", class:"logo" %></h3> -->
+      <%= link_to "IMAGEine That", root_path, class: "navbar-brand" %>
+      <button class ="navbar-toggle collapsed" data-toggle="collapse" data-target=".menu-wrapper">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+
+    <div class="menu-wrapper collapse navbar-collapse">
+
+      <div class="navbar-menu navbar-right">
+
+        <ul class="nav navbar-nav">
+
+          <% if current_user %>
+          <li><%= link_to "My Page", "/user-homepage" %></li>
+          Hello <%= current_user.email %>
+          <li><%= link_to "Browse Photos", "/browse" %></li>
+          <li><%= link_to "Sign Out", sign_out_path %></li>
+          <li><%= link_to "Contact Us", "#" %></li>
+          <% end %>
+        </ul>
+      </div>
+
+
+      <% if !current_user %>
+        <div class="navbar-right">
+          <h3><%= link_to "Sign Up", :new_user %></h3>
+          <%= form_tag sign_in_path, class:"navbar-form" do %>
+            <div class= "form-group">
+              <input type="email" name="email" placeholder="Email" class="form-control">
+            </div>
+            <div class= "form-group">
+              <input type="password" name="password" placeholder="Password" class="form-control">
+            </div>
+            <input type="submit" value="Sign In" class="btn btn-success">
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+   </div>
+  </nav>
+
+
+
+  <% if flash.key?(:notice) %>
+    <div class = 'alert alert-info'>
+      <%= flash[:notice] %>
+    </div>
+  <% end %>
+
+  <div class= 'container'>
+    <%= yield %>
+  </div>
 
 
 </body>

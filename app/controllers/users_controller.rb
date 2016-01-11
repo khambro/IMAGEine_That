@@ -10,7 +10,7 @@ class UsersController <ApplicationController
       session[:user_id] = @user.id
       redirect_to "/user-homepage"
     else
-      redirect_to "/user/new", notice: "Invalid credentials"
+      redirect_to "/user/new", notice: "Username or email not complete, or passwords do not match. You tell me!"
     end
   end
 

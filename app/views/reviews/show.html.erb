@@ -1,6 +1,6 @@
+<div class="form-style-6">
 
-
-  <%= image_tag @photo.image_file.url(:square) %></a>
+  <%= image_tag @photo.image_file.url(:big) %></a>
   <%= @photo.description %>
   <% if @photo.user_id == current_user.id %>
     <form action="/photo/<%= @photo.id %>" method="POST">
@@ -8,9 +8,12 @@
       <input type="hidden" name="_method" value="DELETE" />
       <input class="button" type="submit" value="Delete" data-confirm="Delete photo?"/>
     </form>
-  <% end %>  
-  <% @photo.reviews.each do |r| %>
-    <%= r.rating %>
-    <%= r.comment %>
-    <%= r.user.email %>
   <% end %>
+  <% @photo.reviews.each do |r| %>
+    <div class="user_review">
+      Reviewed By:<%= r.user.email %>
+      Rating: <%= r.rating %>
+      Comment: <%= r.comment %>
+    </div>
+  <% end %>
+</div>

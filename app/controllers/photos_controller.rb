@@ -30,6 +30,7 @@ class PhotosController <ApplicationController
         @random << s
       end
     end
+    @random = @random.sample
   end
 
 
