@@ -3,9 +3,10 @@
   <%= link_to "Upload New Photo", "/new-photo" %>
   <%= button_to "Subscribe", send_subscribe_path, method: :post %>
 
-  <h2>What splendid photos, <%= current_user.name %>!</h2>
+
   <div class="form-style-6">
     <% if current_user.photos.count > 0 %>
+      <h2>What splendid photos, <%= current_user.name %>!</h2>
       <% @photos.each do |p| %>
         <div class="border">
         <% if p.user_id == current_user.id %>

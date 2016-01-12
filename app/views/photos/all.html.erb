@@ -1,6 +1,6 @@
 <div class="container">
 
-
+<% if @random %>
   <div class="form-style-6">
     <h1>Other photographers want your feedback, <%= current_user.name %>!</h1>
     <%= link_to image_tag(@random.image_file.url(:square)), "/photo/#{@random.id}" %>
@@ -20,4 +20,10 @@
       <%= submit_tag "Submit Review" %>
     <% end %>
   </div>
+<% else %>
+
+<h2>Check back soon to review new photos.</h2>
+
+<% end %>
+
 </div>

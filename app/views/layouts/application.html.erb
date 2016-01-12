@@ -35,9 +35,9 @@
           <% if current_user %>
           <li><%= link_to "My Page", "/user-homepage" %></li>
           Hello <%= current_user.email %>
-          <li><%= link_to "Browse Photos", "/browse" %></li>
+          <li><%= link_to "Review Photos", "/browse" %></li>
           <li><%= link_to "Sign Out", sign_out_path %></li>
-          <li><%= link_to "Contact Us", "#" %></li>
+          <li><%= link_to "Browse", "/photos/all" %></li>
           <% end %>
         </ul>
       </div>

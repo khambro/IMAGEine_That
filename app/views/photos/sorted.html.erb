@@ -1,0 +1,14 @@
+<div class="container">
+
+  <div class="form-style-6">
+    <% @photos = @photos.sort_by{ |hash| -hash['rank'] }%>
+    <% @photos.each do |p| %>
+    <%= link_to image_tag(p.image_file.url(:square)), "/photo/#{p.id}" %>
+    <h3>Photo by: <%= p.user.name %></h3>
+    good:<%= p.reviews.where(rating: 1).size %>
+    meh:<%= p.reviews.where(rating: 0).size %>
+    bad:<%= p.reviews.where(rating: -1).size %>
+    rating: <%= p.rank %>
+    <% end %>
+  </div>
+</div>

@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   post "/new-photo", to: "photos#create"
   get "/user/photos", to: "photos#show"
   post "/photos/subscribe", to: "photos#send_subscribe", as: :send_subscribe
+  get "/photos/all", to: "photos#sorted"
 
   get "/user-homepage", to: "photos#show", as: :photos
   post "/user-homepage", to: "photos#create"
@@ -23,6 +24,7 @@ Rails.application.routes.draw do
   post "/review/received", to: "photos#review_received", as: :review_received
   get "/photo/:id", to: "reviews#show"
   delete "/photo/:id", to: "photos#delete"
+
 
 
 

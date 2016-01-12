@@ -8,9 +8,13 @@ class ReviewsController <ApplicationController
 
   def create
     @review = Review.new(review_params)
-    @review.save
-    PhotoMailer.review_received(@review.id).deliver_now
-    redirect_to "/browse"
+    @photo = Photo.find_by(id: @review.photo_id)
+    if @review.save
+      @photo.rank += @review.rating
+      @photo.save
+      PhotoMailer.review_received(@review.id).deliver_now
+      redirect_to "/browse"
+    end
   end
 
   def new
@@ -20,7 +24,7 @@ class ReviewsController <ApplicationController
 
 
   def show
-    @photo = Photo.find(params[:id]) 
+    @photo = Photo.find(params[:id])
     @review = Review.new
     @reviews = Review.all
   end

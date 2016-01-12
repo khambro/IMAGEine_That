@@ -8,6 +8,8 @@ class PhotosController <ApplicationController
   def create
     @photo = Photo.new(photo_params)
     @photo.save
+    @photo.rank = 0
+    @photo.save
     redirect_to "/photo/#{@photo.id}"
   end
 
@@ -33,6 +35,13 @@ class PhotosController <ApplicationController
     @random = @random.sample
   end
 
+  def sorted
+    @photos = Photo.all
+    @reviews = Review.all
+
+  end
+
+
 
   def delete
   @photo = Photo.find(params[:id])
@@ -46,7 +55,7 @@ end
  private
 
   def photo_params
-    params.require(:photo).permit(:image_file, :user_id, :description)
+    params.require(:photo).permit(:image_file, :user_id, :description, :rank)
   end
 
 
