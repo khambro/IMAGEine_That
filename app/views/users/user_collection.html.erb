@@ -1,0 +1,21 @@
+
+<h1><%= @user.name%>'s photos!</h1>
+
+</div>
+  <div class="container">
+    <div class="row">
+        <% @photos.in_groups_of(4, false).each do |group| %>
+          <div class="row">
+            <% group.each do |p| %>
+            <div class="product col-md-3 comment ">
+                <%= link_to image_tag(p.image_file.url(:square)), "/photo/#{p.id}"  %>
+                <p class="words"><%= p.description %></p>
+            </div>
+            <% end%>
+            </div>
+        <% end%>
+
+    </div>
+
+  </div>
+</div>

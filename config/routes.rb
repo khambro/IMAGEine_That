@@ -6,6 +6,13 @@ Rails.application.routes.draw do
 
   get "/user/new", to: "users#new", as: :new_user
   post "/new-user", to: "users#create"
+  get "/user/account/:id", to: "users#show"
+  # get "/user/account/:id", to: "users#edit"
+  post "/user/edit/:id", to: "users#update", as: :edit_user
+  post "/user/account/:id", to: "users#edit"
+  get "/user/:id/photos", to: "users#user_collection"
+
+
   get "/sign-out", to: "sessions#sign_out", as: :sign_out
   post "/sign-in", to: "sessions#sign_in", as: :sign_in
   get "/sign-in", to: "sessions#sign_in"
@@ -18,6 +25,7 @@ Rails.application.routes.draw do
 
   get "/user-homepage", to: "photos#show", as: :photos
   post "/user-homepage", to: "photos#create"
+
 
   get "/browse", to: "photos#all"
   post "/review", to: "reviews#create"

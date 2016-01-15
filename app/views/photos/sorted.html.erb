@@ -1,14 +1,25 @@
 <div class="container">
 
-  <div class="form-style-6">
-    <% @photos = @photos.sort_by{ |hash| -hash['rank'] }%>
-    <% @photos.each do |p| %>
-    <%= link_to image_tag(p.image_file.url(:square)), "/photo/#{p.id}" %>
-    <h3>Photo by: <%= p.user.name %></h3>
-    good:<%= p.reviews.where(rating: 1).size %>
-    meh:<%= p.reviews.where(rating: 0).size %>
-    bad:<%= p.reviews.where(rating: -1).size %>
-    rating: <%= p.rank %>
-    <% end %>
+  <div class="row">
+    <div class="col-lg-12">
+        <h2>Check out the most popular photos on IMAGEine That!</h2>
+    </div>
   </div>
-</div>
+  <div class="container">
+    <div class="row">
+    <% @photos = @photos.sort_by{ |hash| -hash['rank'] }%>
+    <% @photos.in_groups_of(4,false).each do |group| %>
+      <div class="row">
+        <% group.each do |p| %>
+        <div class="product col-md-3 comments">
+          <%= link_to image_tag(p.image_file.url(:square)), "/photo/#{p.id}" %>
+          <h3>Photo by:<a href= "/user/<%= p.user.id %>/photos"><%= image_tag gravatar_for "#{p.user.email}" %><%= p.user.name %></a></h3>
+          👍 <%= p.reviews.where(rating: 1).size %>
+          ✋ <%= p.reviews.where(rating: 0).size %>
+          👎<%= p.reviews.where(rating: -1).size %>
+        </div>
+        <% end %>
+      </div>
+    <% end %>
+    </div>
+  </div>

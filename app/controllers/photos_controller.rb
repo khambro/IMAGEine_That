@@ -20,8 +20,8 @@ class PhotosController <ApplicationController
 
 
   def show
-    @photo = Photo.new
-    @photos = Photo.all
+
+    @photos = Photo.where(user_id: current_user.id)
   end
 
   def all
@@ -40,6 +40,8 @@ class PhotosController <ApplicationController
     @reviews = Review.all
 
   end
+
+  
 
 
 

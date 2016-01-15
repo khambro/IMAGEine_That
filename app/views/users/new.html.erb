@@ -1,4 +1,6 @@
 
+
+
 <div class="container">
 
   <h2>Sign Up</h2>
@@ -7,19 +9,19 @@
   <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>" />
   <div>
     <%= label_tag :username %>
-    <%= text_field_tag "user[name]", nil, placeholder: "username", class: "username" %>
+    <%= text_field_tag "user[name]", nil, placeholder: "username", class: "username", :required => true%>
   </div>
   <div>
     <%= label_tag :email %>
-    <%= email_field_tag "user[email]", nil, placeholder: "email", class: "email" %>
+    <%= email_field_tag "user[email]", nil, placeholder: "email", class: "email", :required => true %>
   </div>
   <div>
     <%= label_tag :password %>
-    <%= password_field_tag "user[password]", nil, placeholder: "password", class: "password" %>
+    <%= password_field_tag "user[password]", nil, placeholder: "password", class: "password", :required => true %>
   </div>
   <div>
     <%= label_tag :password_confirmation %>
-    <%= password_field_tag "user[password_confirmation]", nil, placeholder: "password", class: "password" %>
+    <%= password_field_tag "user[password_confirmation]", nil, placeholder: "password", class: "password", :required => true %>
   </div>
 
   <%= submit_tag "Sign Up" %>

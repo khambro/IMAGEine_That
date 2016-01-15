@@ -1,6 +1,6 @@
 <div class="container">
 
-  
+
 
   <%= form_for(@photo) do |f| %>
   <% if @photo.errors.any? %>
@@ -21,7 +21,7 @@
   </div>
   <div class="field">
     <%= f.label :image_file %>:
-    <%= f.file_field :image_file  %><br />
+    <%= f.file_field :image_file, :required => true %><br />
   </div>
   <div class="actions">
     <%= f.submit %>

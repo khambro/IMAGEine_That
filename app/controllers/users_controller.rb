@@ -22,6 +22,22 @@ class UsersController <ApplicationController
     @current_user = User.find(session[:user_id])
   end
 
+  def edit
+    @current_user = User.find(session[:user_id])
+  end
+
+  def update
+    @current_user = User.find(session[:user_id])
+  end
+
+  def user_collection
+    @user = User.find(params[:id])
+    @photos = Photo.where(user_id: @user.id)
+
+  end
+
+
+
   private
 
   def user_params

@@ -3,19 +3,34 @@
 <% if @random %>
   <div class="form-style-6">
     <h1>Other photographers want your feedback, <%= current_user.name %>!</h1>
-    <%= link_to image_tag(@random.image_file.url(:square)), "/photo/#{@random.id}" %>
+      <%= link_to image_tag(@random.image_file.url(:square)), "/photo/#{@random.id}", class:"center" %>
     <h3>Photo by: <%= @random.user.name %></h3>
     <%= form_tag "/review" do %>
       <input type="hidden" name="review[photo_id]" value= <%= @random.id %> />
       <input type="hidden" name="review[user_id]" value=<%= current_user.id %> />
       <div>
         <%= label_tag :comment %>
-        <%= text_area_tag "review[comment]", nil, placeholder: "Comment", class: "text-field" %>
+        <%= text_area_tag "review[comment]", nil, placeholder: "Comment", class: "text-field", id:"comment" %>
       </div>
       <div>
-        <%= radio_button_tag "review[rating]", 1 %><%= image_tag "thumbsup.jpg" %>
-        <%= radio_button_tag "review[rating]", 0 %><%= image_tag "meh.jpg" %>
-        <%= radio_button_tag "review[rating]", -1 %><%= image_tag "thumbsdown.png" %>
+        <div class="answer">
+          <%= radio_button_tag "review[rating]", 1, false, id:"good"%>
+          <%= label_tag :good do %>
+            <%= image_tag "thumbup.jpg" %>
+          <% end %>
+        </div>
+        <div class="answer">
+          <%= radio_button_tag "review[rating]", 0, false, id:"meh" %>
+          <%= label_tag :meh do %>
+            <%= image_tag "ok.png" %>
+          <% end %>
+        </div>
+        <div class="answer">
+          <%= radio_button_tag "review[rating]", -1, false, id:"bad" %>
+          <%= label_tag :bad do %>
+            <%= image_tag "thumbdown.jpg" %>
+          <% end %>
+        </div>
       </div>
       <%= submit_tag "Submit Review" %>
     <% end %>
