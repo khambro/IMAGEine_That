@@ -3,7 +3,7 @@
     <%= image_tag @photo.image_file.url(:big) %></a>
   </div>
   <div class="description">
-    <h3>c<%= @photo.description %></h3>
+    <h3><%= @photo.description %></h3>
   </div>
   <div class="button">
     <% if @photo.user_id == current_user.id %>
