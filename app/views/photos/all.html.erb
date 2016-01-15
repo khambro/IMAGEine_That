@@ -16,19 +16,24 @@
         <div class="answer">
           <%= radio_button_tag "review[rating]", 1, false, id:"good"%>
           <%= label_tag :good do %>
-            <%= image_tag "thumbup.jpg" %>
+          <span class="btn-green"></span>
+            <!-- <%= image_tag "thumbup.jpg" %> -->
           <% end %>
         </div>
         <div class="answer">
           <%= radio_button_tag "review[rating]", 0, false, id:"meh" %>
           <%= label_tag :meh do %>
-            <%= image_tag "ok.png" %>
+
+
+            <span class="btn-yellow"></span>
+            <!-- <%= image_tag "ok.png" %> -->
           <% end %>
         </div>
         <div class="answer">
           <%= radio_button_tag "review[rating]", -1, false, id:"bad" %>
           <%= label_tag :bad do %>
-            <%= image_tag "thumbdown.jpg" %>
+            <span class="btn-red"></span>
+            <!-- <%= image_tag "thumbdown.jpg" %> -->
           <% end %>
         </div>
       </div>
