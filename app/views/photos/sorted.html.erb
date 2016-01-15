@@ -13,7 +13,7 @@
         <% group.each do |p| %>
         <div class="product col-md-3 comments">
           <%= link_to image_tag(p.image_file.url(:square)), "/photo/#{p.id}" %>
-          <h3>Photo by:<a href= "/user/<%= p.user.id %>/photos"><%= image_tag gravatar_for "#{p.user.email}" %><%= p.user.name %></a></h3>
+          <h4>Photo by:<a href= "/user/<%= p.user.id %>/photos"><%= image_tag gravatar_for "#{p.user.email}" %><%= p.user.name %></a></h4>
           👍 <%= p.reviews.where(rating: 1).size %>
           ✋ <%= p.reviews.where(rating: 0).size %>
           👎<%= p.reviews.where(rating: -1).size %>
